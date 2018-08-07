@@ -10,6 +10,6 @@ corners = np.int0(corners)
 
 for i in corners:
     x,y = i.ravel()
-	cv.circle(img,(x,y),3,255,-1)
+    cv.circle(img,(x,y),3,255,-1)
 
 plt.imshow(img),plt.show()
