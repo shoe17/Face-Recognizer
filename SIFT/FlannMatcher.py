@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
-img1 = cv2.imread('data/Face.jpg')          # queryImage
+img1 = cv2.imread('data/face.jpg')          # queryImage
 img2 = cv2.imread('data/work_face.jpg') # trainImage
 
 gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)

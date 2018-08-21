@@ -3,20 +3,17 @@ import cv2
 from matplotlib import pyplot as plt
 
 MIN_MATCH_COUNT = 10
-img1 = cv2.imread('data/Face.jpg')#,0)          # queryImage
+img1 = cv2.imread('data/face.jpg')#,0)          # queryImage
 img2 = cv2.imread('data/work_face.jpg')#,0) # trainImage
-
-gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
 # Initiate SIFT detector
 sift = cv2.xfeatures2d.SIFT_create()
 
 # find the keypoints and descriptors with SIFT
-kp1, des1 = sift.detectAndCompute(gray1,None)
-kp2, des2 = sift.detectAndCompute(gray2,None)
+kp1, des1 = sift.detectAndCompute(img1,None)
+kp2, des2 = sift.detectAndCompute(img2,None)
 
-FLANN_INDEX_KDTREE = 1
+FLANN_INDEX_KDTREE = 0
 index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
 search_params = dict(checks = 50)
 

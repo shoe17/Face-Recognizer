@@ -1,7 +1,7 @@
 import numpy as np
 import cv2 as cv
 
-img = cv.imread('data/Face.jpg')
+img = cv.imread('data/face.jpg')
 gray= cv.cvtColor(img,cv.COLOR_BGR2GRAY)
 
 sift = cv.xfeatures2d.SIFT_create()
