@@ -23,4 +23,17 @@ for root, dirs, files in os.walk('data'):
 #create dictionary
 dictionary = BOW.cluster()
 
-print(dictionary)
+#Feature matching
+"""
+FLANN_INDEX_KDTREE = 0
+index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 20)
+search_params = dict(checks = 50)
+
+flann = cv.FlannBasedMatcher(index_params, search_params)
+sift2 = cv.xfeatures2d.SIFT_create()
+
+bowDiction = cv.BOWImgDescriptorExtractor(sift2, cv.BFMatcher(cv.NORM_L2))
+bowDiction.setVocabulary(dictionary)
+print ("bow dictionary", np.shape(dictionary))
+"""
+#assign clusters

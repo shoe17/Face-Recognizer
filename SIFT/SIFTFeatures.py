@@ -11,3 +11,6 @@ img=cv.drawKeypoints(gray,kp,img,flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS
 cv.imwrite('data/sift_keypoints.jpg',img)
 
 kp, des = sift.compute(gray,kp)
+
+print("kp: ", len(kp))
+print("des: ", len(des))
