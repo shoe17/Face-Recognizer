@@ -6,7 +6,6 @@ from PIL import Image
 sift = cv.xfeatures2d.SIFT_create()
 
 dictionarySize = 20
-
 BOW = cv.BOWKMeansTrainer(dictionarySize)
 
 for root, dirs, files in os.walk('data'):
@@ -21,19 +20,22 @@ for root, dirs, files in os.walk('data'):
 			BOW.add(dsc)
 
 #create dictionary
+print("Calculating bag of words")
 dictionary = BOW.cluster()
 
-#Feature matching
+print("Saving Cluster")
+
+np.savetxt("dictionary.py", dictionary)
+
+
 """
-FLANN_INDEX_KDTREE = 0
-index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 20)
-search_params = dict(checks = 50)
-
-flann = cv.FlannBasedMatcher(index_params, search_params)
-sift2 = cv.xfeatures2d.SIFT_create()
-
-bowDiction = cv.BOWImgDescriptorExtractor(sift2, cv.BFMatcher(cv.NORM_L2))
-bowDiction.setVocabulary(dictionary)
-print ("bow dictionary", np.shape(dictionary))
+with open('dictionary.py', 'w') as file:
+	file.write(dictionary)
+"""
+"""
+#Convert SIFT features into cluster IDs
+for root, dirs, files in os.walk('data'):
+	for name in files:
+		image = os.path.join(root, name):
 """
 #assign clusters
