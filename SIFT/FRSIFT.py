@@ -22,7 +22,6 @@ for root, dirs, files in os.walk('data'):
 #create dictionary
 print("Calculating bag of words")
 dictionary = BOW.cluster()
-
 print("Saving Cluster")
 
 #np.savetxt("dictionary.py", dictionary)
@@ -32,7 +31,7 @@ print("Saving Cluster")
 for root, dirs, files in os.walk('data'):
 	for name in files:
 		clusterIDs = []
-		dist = 100000000000000000
+
 		image = os.path.join(root, name)
 		
 		if (image.lower().endswith('.jpg')):
@@ -41,12 +40,23 @@ for root, dirs, files in os.walk('data'):
 			
 			kp, dsc = sift.detectAndCompute(img, None)
 		
-		for points in dsc:
-			#compare each descriptor to each cluster id
-			#find the min distance between the two most likely using np.linalg.norm(point-dictionary)
-			#set the min dist cluster as the ID for the descriptor
-			#replacing the 128 dimension vector with one number
+		for descriptor in dsc:
+			min = 100000000000000000000
+			for cluster in range(dictionary.shape[0]):
+				print(cluster)
+				dist = np.linalg.norm(descriptor - dictionary[cluster])
+				if (dist < min) :
+					min = dist
+					id = cluster
 
+			clusterIDs.append(id)
+		print(clusterIDs)
+		break
+				#compare each descriptor to each cluster id
+				#find the min distance between the two most likely using np.linalg.norm(point-dictionary)
+				#set the min dist cluster as the ID for the descriptor
+				#replacing the 128 dimension vector with one number
+				
 """
 with open('dictionary.py', 'w') as file:
 	file.write(dictionary)
